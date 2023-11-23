@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Collection Project</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <script>
+
+/*
+We have an object that represents part of a collection of musical albums.
+
+Each album has a unique identification number (ID) associated with other properties.
+
+Not all albums have complete information
+
+Then, 
+Define a function updateDisks that takes the following parameters:
+- records (the object that represents the record collection).
+- go
+- property ("artist" or "songs").
+- worth
+
+Your goal is to complete the function by implementing the following rules to modify the object passed to the function:
+
+- If "value" is an empty string, remove the corresponding album property.
+
+- If "property" is equal to the string "songs" but the album does not have a property called "songs", create an empty array and add "value" to that array.
+
+- If "value" is not an empty string and "property" is not equal to "songs", assign the value of the "value" parameter to the property. If the property does not exist, you must create it and assign this value.
+
+*/
+
+var collectionRecord = {
+
+    7853: {
+        albumTitle: "Bee Gees Greatest",
+        artist: "Bee Gees",
+        songs: ["Stayin' Alive"]
+    },
+
+    5439: {
+        albumTitle: "ABB Gold"
+    }
+};
+
+function updateRecords (disc, id, property, value) {
+
+    if (value === "") {
+        delete disc [id][property];
+
+    } else if (property === "songs") {
+        disc[id][property] = disc[id][property] || [];
+        disc[id][property].push(value);
+
+    } else {
+        disc[id][property] = value;
+    }
+}
+
+console.log(collectionRecord[7853].albumTitle);
+
+updateRecords(collectionRecord, 7853, "albumTitle", "");
+
+console.log(collectionRecord[7853].albumTitle); //Bee Gees Greates / Undefined. 
+
+console.log(collectionRecord[5439].songs);
+
+updateRecords(collectionRecord, 5439, "songs", "November Rain");
+
+console.log(collectionRecord[5439].songs);
+
+
+
+
+    </script>
+    
+</body>
+</html>
